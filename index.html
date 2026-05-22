@@ -837,6 +837,31 @@ function setLang(l){
 
 // Init dots
 showStep(0);
+
+// ── MODAL ─────────────────────────────────────────────────────────
+function openModal(id) {
+  var modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+  }
+}
+function closeModal(id) {
+  var modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+      m.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+});
 </script>
 
 <!-- PRIVACY POLICY MODAL -->
