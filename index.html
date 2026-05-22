@@ -840,6 +840,10 @@ showStep(0);
 
 // ── MODAL ─────────────────────────────────────────────────────────
 function openModal(id) {
+  // Close any currently open modal first
+  document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+    m.classList.remove('open');
+  });
   var modal = document.getElementById(id);
   if (modal) {
     modal.classList.add('open');
