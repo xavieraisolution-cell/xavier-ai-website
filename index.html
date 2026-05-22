@@ -203,6 +203,166 @@ select.qi option{background:#0C1020}
 .ft{padding:48px 20px}
 .fi{flex-direction:column;align-items:flex-start;gap:24px}
 }
+
+/* ── MODAL PAGES ─────────────────────────────────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:var(--bg);overflow-y:auto;}
+.modal-overlay.open{display:block;}
+.modal-close-bar{position:sticky;top:0;z-index:10;background:rgba(6,8,16,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;}
+.modal-close-btn{background:var(--border2);color:var(--white);border:1px solid var(--border2);padding:8px 20px;border-radius:4px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;transition:all 0.2s;}
+.modal-close-btn:hover{background:var(--cyan);color:var(--bg);border-color:var(--cyan);}
+.modal-back-label{font-size:13px;color:var(--off);}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060810;--bg2:#0C1020;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--white:#FFF;--off:#94A3B8;--cyan:#00E5FF;--orange:#FF6B35;--purple:#A855F7;--gold:#F59E0B;--text:#E2E8F0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden}
+
+/* NAV — identical to main site */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(6,8,16,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);gap:16px}
+.nav-logo{cursor:pointer;flex-shrink:0;text-decoration:none}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--off);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-phone{font-size:12px;font-weight:600;color:var(--cyan);text-decoration:none;white-space:nowrap}
+
+/* HERO BANNER */
+.page-hero{padding:140px 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.page-hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 70% at 80% 50%,rgba(0,229,255,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 10% 50%,rgba(168,85,247,0.05) 0%,transparent 55%)}
+.page-hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px}
+.page-hero-inner{max-width:800px;margin:0 auto;position:relative}
+.page-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--cyan);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:6px 14px;border-radius:2px;margin-bottom:24px}
+.page-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,80px);line-height:0.95;letter-spacing:0.02em;color:var(--white);margin-bottom:20px}
+.page-title span{color:var(--cyan)}
+.page-meta{font-size:13px;color:var(--off);display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.page-meta-dot{width:4px;height:4px;border-radius:50%;background:var(--border2)}
+
+/* CONTENT */
+.content-wrap{max-width:800px;margin:0 auto;padding:80px 48px 120px}
+.section-block{margin-bottom:56px}
+.section-block:last-child{margin-bottom:0}
+.block-num{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.block-num::before{content:'';display:block;width:28px;height:1px;background:var(--cyan)}
+.block-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3vw,36px);letter-spacing:0.03em;color:var(--white);margin-bottom:18px;line-height:1.05}
+.block-body{font-size:15px;font-weight:300;color:var(--off);line-height:1.8}
+.block-body p{margin-bottom:16px}
+.block-body p:last-child{margin-bottom:0}
+.block-body ul{margin:12px 0 16px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.block-body ul li{font-size:14px;color:var(--off);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.block-body ul li::before{content:'→';color:var(--cyan);font-weight:700;flex-shrink:0;margin-top:1px}
+.block-body a{color:var(--cyan);text-decoration:none}
+.block-body a:hover{text-decoration:underline}
+.block-body strong{color:var(--white);font-weight:600}
+
+/* HIGHLIGHT BOX */
+.highlight-box{background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:8px;padding:28px 32px;margin:24px 0}
+.highlight-box p{font-size:14px;color:var(--off);line-height:1.7;margin:0}
+.highlight-box strong{color:var(--cyan)}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:56px 0}
+
+/* CONTACT CARD */
+.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.contact-card-icon{width:48px;height:48px;border-radius:4px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-card-body{flex:1}
+.contact-card-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em;color:var(--white);margin-bottom:6px}
+.contact-card-text{font-size:13px;color:var(--off);line-height:1.6;margin-bottom:12px}
+.contact-card-links{display:flex;gap:16px;flex-wrap:wrap}
+.contact-card-links a{color:var(--cyan);text-decoration:none;font-size:13px;font-weight:600}
+
+/* FOOTER */
+.ft{background:var(--bg2);border-top:1px solid var(--border);padding:60px 48px}
+.fi{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.ftag{font-size:13px;color:var(--off);margin-top:8px}
+.fl{display:flex;gap:24px;flex-wrap:wrap}
+.fl a{font-size:12px;color:var(--off);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.fl a:hover{color:var(--white)}
+.fc{font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px}
+.foot-legal{display:flex;gap:16px;margin-top:4px}
+.foot-legal a{font-size:11px;color:var(--cyan);text-decoration:none;opacity:0.8}
+
+@media(max-width:768px){
+.nav{padding:0 20px}.nav-links{display:none}
+.page-hero{padding:110px 20px 60px}
+.content-wrap{padding:60px 20px 80px}
+.ft{padding:48px 20px}
+.fi{flex-direction:column;align-items:flex-start;gap:24px}
+}
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060810;--bg2:#0C1020;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--white:#FFF;--off:#94A3B8;--cyan:#00E5FF;--orange:#FF6B35;--purple:#A855F7;--gold:#F59E0B;--text:#E2E8F0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(6,8,16,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);gap:16px}
+.nav-logo{cursor:pointer;flex-shrink:0;text-decoration:none}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--off);text-decoration:none;transition:color 0.2s;white-space:nowrap}
+.nav-links a:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-phone{font-size:12px;font-weight:600;color:var(--cyan);text-decoration:none;white-space:nowrap}
+.page-hero{padding:140px 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.page-hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 70% at 20% 50%,rgba(168,85,247,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 90% 50%,rgba(0,229,255,0.05) 0%,transparent 55%)}
+.page-hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px}
+.page-hero-inner{max-width:800px;margin:0 auto;position:relative}
+.page-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--purple);background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.2);padding:6px 14px;border-radius:2px;margin-bottom:24px}
+.page-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,80px);line-height:0.95;letter-spacing:0.02em;color:var(--white);margin-bottom:20px}
+.page-title span{color:var(--cyan)}
+.page-meta{font-size:13px;color:var(--off);display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.page-meta-dot{width:4px;height:4px;border-radius:50%;background:var(--border2)}
+.content-wrap{max-width:800px;margin:0 auto;padding:80px 48px 120px}
+.section-block{margin-bottom:56px}
+.section-block:last-child{margin-bottom:0}
+.block-num{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.block-num::before{content:'';display:block;width:28px;height:1px;background:var(--cyan)}
+.block-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,3vw,36px);letter-spacing:0.03em;color:var(--white);margin-bottom:18px;line-height:1.05}
+.block-body{font-size:15px;font-weight:300;color:var(--off);line-height:1.8}
+.block-body p{margin-bottom:16px}
+.block-body p:last-child{margin-bottom:0}
+.block-body ul{margin:12px 0 16px 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.block-body ul li{font-size:14px;color:var(--off);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.block-body ul li::before{content:'→';color:var(--cyan);font-weight:700;flex-shrink:0;margin-top:1px}
+.block-body a{color:var(--cyan);text-decoration:none}
+.block-body a:hover{text-decoration:underline}
+.block-body strong{color:var(--white);font-weight:600}
+.highlight-box{background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.15);border-radius:8px;padding:28px 32px;margin:24px 0}
+.highlight-box p{font-size:14px;color:var(--off);line-height:1.7;margin:0}
+.highlight-box strong{color:var(--purple)}
+.sms-box{background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.2);border-radius:8px;padding:28px 32px;margin:24px 0}
+.sms-box-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.05em;color:var(--cyan);margin-bottom:12px}
+.sms-box p{font-size:14px;color:var(--off);line-height:1.7;margin-bottom:10px}
+.sms-box p:last-child{margin-bottom:0}
+.sms-box strong{color:var(--white);font-weight:600}
+.divider{height:1px;background:var(--border);margin:56px 0}
+.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.contact-card-icon{width:48px;height:48px;border-radius:4px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-card-body{flex:1}
+.contact-card-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em;color:var(--white);margin-bottom:6px}
+.contact-card-text{font-size:13px;color:var(--off);line-height:1.6;margin-bottom:12px}
+.contact-card-links{display:flex;gap:16px;flex-wrap:wrap}
+.contact-card-links a{color:var(--cyan);text-decoration:none;font-size:13px;font-weight:600}
+.ft{background:var(--bg2);border-top:1px solid var(--border);padding:60px 48px}
+.fi{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.ftag{font-size:13px;color:var(--off);margin-top:8px}
+.fl{display:flex;gap:24px;flex-wrap:wrap}
+.fl a{font-size:12px;color:var(--off);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s}
+.fl a:hover{color:var(--white)}
+.fc{font-size:12px;color:rgba(255,255,255,0.45);margin-top:4px}
+.foot-legal{display:flex;gap:16px;margin-top:10px}
+.foot-legal a{font-size:11px;color:var(--cyan);text-decoration:none;opacity:0.8}
+@media(max-width:768px){
+.nav{padding:0 20px}.nav-links{display:none}
+.page-hero{padding:110px 20px 60px}
+.content-wrap{padding:60px 20px 80px}
+.ft{padding:48px 20px}
+.fi{flex-direction:column;align-items:flex-start;gap:24px}
+}
+
 </style>
 </head>
 <body>
@@ -477,6 +637,10 @@ select.qi option{background:#0C1020}
       <div style="margin-bottom:4px"><a href="tel:12038197050" style="color:var(--cyan);text-decoration:none;font-weight:600">📞 203-819-7050</a></div>
       <div style="margin-bottom:6px"><a href="mailto:clecio@xavieraisolutions.com" style="color:var(--cyan);text-decoration:none;font-size:13px">clecio@xavieraisolutions.com</a></div>
       <div class="fc" id="ft-copy">© 2025 Xavier AI Business Solutions</div>
+<div style="display:flex;gap:16px;margin-top:8px;">
+  <span onclick="openModal('privacyModal')" style="font-size:11px;color:var(--off);cursor:pointer;text-decoration:underline;transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--off)'">Privacy Policy</span>
+  <span onclick="openModal('termsModal')" style="font-size:11px;color:var(--off);cursor:pointer;text-decoration:underline;transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--off)'">Terms & Conditions</span>
+</div>
     </div>
   </div>
 </footer>
@@ -674,5 +838,447 @@ function setLang(l){
 // Init dots
 showStep(0);
 </script>
+
+<!-- PRIVACY POLICY MODAL -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-close-bar">
+    <span class="modal-back-label">← Xavier AI Business Solutions</span>
+    <button class="modal-close-btn" onclick="closeModal('privacyModal')">✕ Close</button>
+  </div>
+  <!-- HERO BANNER -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="page-eyebrow"><span class="page-dot"></span> Legal</div>
+    <h1 class="page-title">PRIVACY <span>POLICY</span></h1>
+    <div class="page-meta">
+      <span>Xavier AI Business Solutions</span>
+      <span class="page-meta-dot"></span>
+      <span>Effective Date: May 22, 2025</span>
+      <span class="page-meta-dot"></span>
+      <span>Last Updated: May 22, 2025</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div class="highlight-box">
+    <p><strong>Summary:</strong> Xavier AI Business Solutions collects only the information necessary to provide our services. We do not sell your data. We do not share it with third parties for marketing. You can opt out of SMS communications at any time by replying <strong>STOP</strong>.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section-block">
+    <div class="block-num">01</div>
+    <h2 class="block-title">WHO WE ARE</h2>
+    <div class="block-body">
+      <p>Xavier AI Business Solutions ("Company," "we," "us," or "our") is a technology company that provides AI agents, ERP systems, and digital marketing services for small and medium-sized businesses. We are headquartered in the United States.</p>
+      <p>This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you visit our website (<strong>xavieraisolutions.com</strong>), interact with our AI-powered receptionist, or receive SMS communications from us.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 2 -->
+  <div class="section-block">
+    <div class="block-num">02</div>
+    <h2 class="block-title">INFORMATION WE COLLECT</h2>
+    <div class="block-body">
+      <p>We collect information you provide directly to us and information collected automatically when you interact with our services.</p>
+      <p><strong>Information you provide:</strong></p>
+      <ul>
+        <li>Name, email address, phone number, and business information submitted through our assessment form or contact page</li>
+        <li>Messages and inquiries sent via SMS, email, or our website</li>
+        <li>Business details provided during our discovery assessment (industry, team size, revenue range, operational challenges)</li>
+        <li>Feedback and communications with our team</li>
+      </ul>
+      <p><strong>Information collected automatically:</strong></p>
+      <ul>
+        <li>IP address, browser type, and device information</li>
+        <li>Pages visited, time spent on site, and referring URLs</li>
+        <li>Cookies and similar tracking technologies (see Section 7)</li>
+      </ul>
+      <p><strong>Information from SMS interactions:</strong></p>
+      <ul>
+        <li>Phone number used to contact us</li>
+        <li>Content of messages sent to our AI receptionist</li>
+        <li>Timestamps and message delivery status</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 3 -->
+  <div class="section-block">
+    <div class="block-num">03</div>
+    <h2 class="block-title">HOW WE USE YOUR INFORMATION</h2>
+    <div class="block-body">
+      <p>We use the information we collect for the following purposes:</p>
+      <ul>
+        <li>To respond to your inquiries and provide customer support</li>
+        <li>To deliver our AI receptionist, ERP, and digital marketing services</li>
+        <li>To send SMS messages in response to your inbound inquiries (you initiate contact first)</li>
+        <li>To prepare personalized business strategy proposals and assessments</li>
+        <li>To send appointment confirmations, reminders, and service-related notifications</li>
+        <li>To improve our website, AI systems, and service offerings</li>
+        <li>To comply with legal obligations</li>
+        <li>To detect and prevent fraud or security incidents</li>
+      </ul>
+      <p>We do <strong>not</strong> use your information to send unsolicited marketing messages, sell your data to third parties, or build advertising profiles.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 4 -->
+  <div class="section-block">
+    <div class="block-num">04</div>
+    <h2 class="block-title">SMS COMMUNICATIONS &amp; OPT-OUT</h2>
+    <div class="block-body">
+      <p>Xavier AI Business Solutions uses SMS messaging to respond to inbound inquiries received through our AI receptionist system. By texting our business number, you consent to receive automated replies related to your inquiry.</p>
+      <p><strong>Message frequency:</strong> Message frequency varies based on your interactions with our AI assistant. We do not send bulk marketing SMS blasts.</p>
+      <p><strong>Message and Data Rates:</strong> Standard message and data rates may apply depending on your mobile carrier plan.</p>
+      <p><strong>To opt out:</strong> Reply <strong>STOP</strong> to any SMS message at any time to unsubscribe. You will receive a confirmation message and no further messages will be sent.</p>
+      <p><strong>To opt back in:</strong> Reply <strong>START</strong> to resume receiving messages.</p>
+      <p><strong>For help:</strong> Reply <strong>HELP</strong> to receive assistance, or contact us directly at <a href="mailto:clecio@xavieraisolutions.com">clecio@xavieraisolutions.com</a>.</p>
+      <p>We comply with the CTIA Messaging Principles and Best Practices and the A2P 10DLC requirements for business messaging in the United States.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5 -->
+  <div class="section-block">
+    <div class="block-num">05</div>
+    <h2 class="block-title">HOW WE SHARE YOUR INFORMATION</h2>
+    <div class="block-body">
+      <p>We do not sell, rent, or trade your personal information. We may share your information only in the following limited circumstances:</p>
+      <ul>
+        <li><strong>Service providers:</strong> We use third-party vendors to operate our services (e.g., Twilio for SMS delivery, Retell AI for voice and messaging automation). These providers are contractually obligated to protect your data and may only use it to provide services on our behalf.</li>
+        <li><strong>Legal requirements:</strong> We may disclose information if required by law, court order, or government authority.</li>
+        <li><strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
+        <li><strong>Protection of rights:</strong> We may disclose information to protect the safety, rights, or property of Xavier AI Business Solutions, our clients, or others.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 6 -->
+  <div class="section-block">
+    <div class="block-num">06</div>
+    <h2 class="block-title">DATA RETENTION</h2>
+    <div class="block-body">
+      <p>We retain your personal information for as long as necessary to provide our services and comply with legal obligations. Specifically:</p>
+      <ul>
+        <li>Assessment and contact form submissions: retained for up to 3 years</li>
+        <li>SMS message logs: retained for up to 12 months</li>
+        <li>Client service records: retained for the duration of the business relationship plus 5 years</li>
+        <li>Website analytics data: retained for up to 24 months</li>
+      </ul>
+      <p>You may request deletion of your personal data at any time by contacting us (see Section 9).</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 7 -->
+  <div class="section-block">
+    <div class="block-num">07</div>
+    <h2 class="block-title">COOKIES &amp; TRACKING</h2>
+    <div class="block-body">
+      <p>Our website uses cookies and similar technologies to improve functionality and analyze traffic. Cookies are small text files stored on your device.</p>
+      <ul>
+        <li><strong>Essential cookies:</strong> Required for the website to function properly</li>
+        <li><strong>Analytics cookies:</strong> Help us understand how visitors use the site (e.g., Google Analytics)</li>
+        <li><strong>Preference cookies:</strong> Remember your language selection and settings</li>
+      </ul>
+      <p>You can control cookies through your browser settings. Disabling cookies may affect some website functionality.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 8 -->
+  <div class="section-block">
+    <div class="block-num">08</div>
+    <h2 class="block-title">DATA SECURITY</h2>
+    <div class="block-body">
+      <p>We implement industry-standard technical and organizational measures to protect your personal information against unauthorized access, disclosure, alteration, or destruction. These measures include:</p>
+      <ul>
+        <li>Encrypted data transmission (TLS/HTTPS)</li>
+        <li>Access controls limiting who can view personal data</li>
+        <li>Regular security assessments of our systems and third-party providers</li>
+        <li>Secure data storage practices</li>
+      </ul>
+      <p>No method of transmission over the internet is 100% secure. While we strive to protect your information, we cannot guarantee absolute security.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 9 -->
+  <div class="section-block">
+    <div class="block-num">09</div>
+    <h2 class="block-title">YOUR RIGHTS</h2>
+    <div class="block-body">
+      <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+        <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
+        <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+        <li><strong>Opt-out of SMS:</strong> Reply STOP to any message or contact us directly</li>
+        <li><strong>Portability:</strong> Request your data in a portable format</li>
+        <li><strong>Objection:</strong> Object to certain types of data processing</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:clecio@xavieraisolutions.com">clecio@xavieraisolutions.com</a>. We will respond within 30 days.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 10 -->
+  <div class="section-block">
+    <div class="block-num">10</div>
+    <h2 class="block-title">CHANGES TO THIS POLICY</h2>
+    <div class="block-body">
+      <p>We may update this Privacy Policy from time to time. When we make material changes, we will update the "Last Updated" date at the top of this page. We encourage you to review this policy periodically.</p>
+      <p>Continued use of our services after changes are posted constitutes your acceptance of the updated policy.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT CARD -->
+  <div class="contact-card">
+    <div class="contact-card-icon">📧</div>
+    <div class="contact-card-body">
+      <div class="contact-card-title">PRIVACY QUESTIONS?</div>
+      <p class="contact-card-text">If you have any questions about this Privacy Policy or how we handle your data, please contact us directly. We typically respond within 48 hours.</p>
+      <div class="contact-card-links">
+        <a href="mailto:clecio@xavieraisolutions.com">clecio@xavieraisolutions.com</a>
+        <a href="tel:12038197050">📞 203-819-7050</a>
+        <a href="/terms-and-conditions">Terms &amp; Conditions →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+</div>
+
+<!-- TERMS & CONDITIONS MODAL -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal-close-bar">
+    <span class="modal-back-label">← Xavier AI Business Solutions</span>
+    <button class="modal-close-btn" onclick="closeModal('termsModal')">✕ Close</button>
+  </div>
+  <!-- HERO BANNER -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="page-eyebrow"><span class="page-dot"></span> Legal</div>
+    <h1 class="page-title">TERMS &amp; <span>CONDITIONS</span></h1>
+    <div class="page-meta">
+      <span>Xavier AI Business Solutions</span>
+      <span class="page-meta-dot"></span>
+      <span>Effective Date: May 22, 2025</span>
+      <span class="page-meta-dot"></span>
+      <span>Last Updated: May 22, 2025</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div class="highlight-box">
+    <p><strong>Summary:</strong> By using our website or services, you agree to these terms. We provide AI, ERP, and marketing services for businesses. SMS messaging is reply-based — you initiate contact first. Reply <strong>STOP</strong> to opt out of messages at any time. Msg &amp; Data rates may apply.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section-block">
+    <div class="block-num">01</div>
+    <h2 class="block-title">ACCEPTANCE OF TERMS</h2>
+    <div class="block-body">
+      <p>By accessing or using the website at <a href="https://xavieraisolutions.com">xavieraisolutions.com</a>, submitting our business assessment, or communicating with our AI receptionist via SMS or other channels, you agree to be bound by these Terms and Conditions and our <a href="/privacy-policy">Privacy Policy</a>.</p>
+      <p>If you do not agree to these terms, please do not use our services. These terms constitute a legally binding agreement between you and Xavier AI Business Solutions.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 2 -->
+  <div class="section-block">
+    <div class="block-num">02</div>
+    <h2 class="block-title">ABOUT OUR SERVICES</h2>
+    <div class="block-body">
+      <p>Xavier AI Business Solutions provides technology services including:</p>
+      <ul>
+        <li>AI-powered virtual receptionist and communication agents</li>
+        <li>ERP system implementation and consulting</li>
+        <li>Digital marketing strategy and execution</li>
+        <li>Business process automation</li>
+        <li>Business discovery assessments and AI strategy consulting</li>
+      </ul>
+      <p>Service scope, deliverables, timelines, and fees are defined in individual service agreements or proposals provided to each client. These Terms and Conditions apply in addition to any such agreements.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 3 — SMS TERMS (critical for Twilio) -->
+  <div class="section-block">
+    <div class="block-num">03</div>
+    <h2 class="block-title">SMS MESSAGING TERMS</h2>
+    <div class="block-body">
+      <p>The following terms apply specifically to SMS communications sent by Xavier AI Business Solutions via our AI receptionist system (operated through Twilio).</p>
+
+      <div class="sms-box">
+        <div class="sms-box-title">SMS Program Summary</div>
+        <p><strong>Program Name:</strong> Xavier AI Solutions AI Receptionist</p>
+        <p><strong>Program Description:</strong> Our AI-powered receptionist responds to inbound SMS messages from individuals who contact our business number. Replies include answers to inquiries, appointment confirmations, and service-related information.</p>
+        <p><strong>Message Frequency:</strong> Message frequency varies. Messages are sent only in response to your inbound inquiries — we do not send unsolicited bulk messages.</p>
+        <p><strong>Message &amp; Data Rates:</strong> Standard message and data rates may apply based on your mobile carrier plan.</p>
+        <p><strong>Supported Carriers:</strong> All major US carriers including AT&amp;T, Verizon, T-Mobile, Sprint, and others.</p>
+      </div>
+
+      <p><strong>How opt-in works:</strong> You opt in to receive SMS messages by texting our business number (+1 203-819-7050). By sending us a message, you consent to receive an automated reply from our AI assistant related to your inquiry.</p>
+      <p><strong>To opt out (STOP):</strong> Reply <strong>STOP</strong> to any message at any time. You will receive one final confirmation message and will not receive further messages.</p>
+      <p><strong>To opt back in (START):</strong> Reply <strong>START</strong> to resume receiving messages after opting out.</p>
+      <p><strong>For help (HELP):</strong> Reply <strong>HELP</strong> to receive support information, or contact us at <a href="mailto:clecio@xavieraisolutions.com">clecio@xavieraisolutions.com</a> or <a href="tel:12038197050">203-819-7050</a>.</p>
+      <p>We comply with all applicable CTIA Messaging Principles, TCPA regulations, and A2P 10DLC requirements for business SMS messaging in the United States.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 4 -->
+  <div class="section-block">
+    <div class="block-num">04</div>
+    <h2 class="block-title">USE OF WEBSITE</h2>
+    <div class="block-body">
+      <p>You agree to use our website only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+      <ul>
+        <li>Use the site in any way that violates applicable local, national, or international laws or regulations</li>
+        <li>Transmit any unsolicited or unauthorized advertising or promotional material</li>
+        <li>Attempt to gain unauthorized access to any part of our website or systems</li>
+        <li>Engage in any conduct that restricts or inhibits anyone's use of the website</li>
+        <li>Use automated tools to scrape, crawl, or harvest data from the website</li>
+        <li>Impersonate Xavier AI Business Solutions or any of its employees</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5 -->
+  <div class="section-block">
+    <div class="block-num">05</div>
+    <h2 class="block-title">INTELLECTUAL PROPERTY</h2>
+    <div class="block-body">
+      <p>All content on this website — including text, graphics, logos, icons, images, and software — is the property of Xavier AI Business Solutions and is protected by United States and international copyright laws.</p>
+      <p>You may not reproduce, distribute, modify, create derivative works from, or exploit any content from this website without our prior written permission.</p>
+      <p>The Xavier AI Business Solutions name, logo, and all related marks are trademarks of Xavier AI Business Solutions. Nothing in these Terms grants you the right to use our trademarks.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 6 -->
+  <div class="section-block">
+    <div class="block-num">06</div>
+    <h2 class="block-title">PAYMENT &amp; FEES</h2>
+    <div class="block-body">
+      <p>Service fees, payment schedules, and refund policies are outlined in individual service agreements provided to each client prior to engagement. Unless otherwise stated in a service agreement:</p>
+      <ul>
+        <li>Monthly subscriptions are billed in advance on a recurring basis</li>
+        <li>One-time setup fees are non-refundable once onboarding has commenced</li>
+        <li>Either party may terminate a month-to-month service agreement with 30 days written notice</li>
+        <li>Overdue invoices may accrue interest at 1.5% per month or the maximum rate permitted by law</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 7 -->
+  <div class="section-block">
+    <div class="block-num">07</div>
+    <h2 class="block-title">DISCLAIMERS &amp; LIMITATION OF LIABILITY</h2>
+    <div class="block-body">
+      <p>Our website and services are provided on an "as is" and "as available" basis without warranties of any kind, either express or implied.</p>
+      <p>Xavier AI Business Solutions does not warrant that:</p>
+      <ul>
+        <li>The website will be uninterrupted, error-free, or secure</li>
+        <li>AI-generated responses will be 100% accurate in all circumstances</li>
+        <li>Results described in testimonials or case studies will be achieved by all clients</li>
+      </ul>
+      <p>To the fullest extent permitted by law, Xavier AI Business Solutions shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services, even if we have been advised of the possibility of such damages.</p>
+      <p>Our total liability to you for any claims arising under these Terms shall not exceed the amount paid by you to us in the three months preceding the claim.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 8 -->
+  <div class="section-block">
+    <div class="block-num">08</div>
+    <h2 class="block-title">PRIVACY</h2>
+    <div class="block-body">
+      <p>Your use of our services is also governed by our <a href="/privacy-policy">Privacy Policy</a>, which is incorporated into these Terms by reference. Please review our Privacy Policy to understand our data collection, use, and SMS opt-out practices.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 9 -->
+  <div class="section-block">
+    <div class="block-num">09</div>
+    <h2 class="block-title">GOVERNING LAW</h2>
+    <div class="block-body">
+      <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of the State of Connecticut, United States, without regard to its conflict of law provisions.</p>
+      <p>Any disputes arising under these Terms shall be resolved through binding arbitration in the State of Connecticut, except that either party may seek injunctive relief in a court of competent jurisdiction.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 10 -->
+  <div class="section-block">
+    <div class="block-num">10</div>
+    <h2 class="block-title">CHANGES TO THESE TERMS</h2>
+    <div class="block-body">
+      <p>We reserve the right to modify these Terms and Conditions at any time. When we make material changes, we will update the "Last Updated" date at the top of this page.</p>
+      <p>Your continued use of our services after changes are posted constitutes acceptance of the updated Terms. We encourage you to review this page periodically.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT CARD -->
+  <div class="contact-card">
+    <div class="contact-card-icon">⚖️</div>
+    <div class="contact-card-body">
+      <div class="contact-card-title">QUESTIONS ABOUT THESE TERMS?</div>
+      <p class="contact-card-text">If you have questions about these Terms and Conditions, our SMS program, or any of our services, please reach out. We respond within 48 hours.</p>
+      <div class="contact-card-links">
+        <a href="mailto:clecio@xavieraisolutions.com">clecio@xavieraisolutions.com</a>
+        <a href="tel:12038197050">📞 203-819-7050</a>
+        <a href="/privacy-policy">Privacy Policy →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+</div>
+
 </body>
 </html>
