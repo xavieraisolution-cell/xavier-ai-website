@@ -849,6 +849,9 @@ function openModal(id) {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     modal.scrollTop = 0;
+    // Update URL hash
+    var anchor = modal.getAttribute('data-anchor');
+    if (anchor) history.pushState(null, '', '#' + anchor);
   }
 }
 function closeModal(id) {
@@ -856,6 +859,8 @@ function closeModal(id) {
   if (modal) {
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    // Remove hash from URL
+    history.pushState(null, '', window.location.pathname);
   }
 }
 document.addEventListener('keydown', function(e) {
@@ -866,10 +871,30 @@ document.addEventListener('keydown', function(e) {
     });
   }
 });
+
+// Auto-open modal based on URL hash
+function checkHash() {
+  var hash = window.location.hash;
+  if (hash === '#privacy-policy') openModal('privacyModal');
+  else if (hash === '#terms') openModal('termsModal');
+}
+window.addEventListener('hashchange', checkHash);
+window.addEventListener('load', checkHash);
+
+
+// Auto-open modal based on URL hash
+function checkHash() {
+  var hash = window.location.hash;
+  if (hash === '#privacy-policy') openModal('privacyModal');
+  else if (hash === '#terms') openModal('termsModal');
+}
+window.addEventListener('hashchange', checkHash);
+window.addEventListener('load', checkHash);
+
 </script>
 
 <!-- PRIVACY POLICY MODAL -->
-<div class="modal-overlay" id="privacyModal">
+<div class="modal-overlay" id="privacyModal" data-anchor="privacy-policy">
   <div class="modal-close-bar">
     <span class="modal-back-label">← Xavier AI Business Solutions</span>
     <button class="modal-close-btn" onclick="closeModal('privacyModal')">✕ Close</button>
@@ -1101,7 +1126,7 @@ document.addEventListener('keydown', function(e) {
 </div>
 
 <!-- TERMS & CONDITIONS MODAL -->
-<div class="modal-overlay" id="termsModal">
+<div class="modal-overlay" id="termsModal" data-anchor="terms">
   <div class="modal-close-bar">
     <span class="modal-back-label">← Xavier AI Business Solutions</span>
     <button class="modal-close-btn" onclick="closeModal('termsModal')">✕ Close</button>
